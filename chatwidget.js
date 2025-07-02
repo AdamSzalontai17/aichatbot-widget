@@ -14,17 +14,17 @@
     const widgetStyles = document.createElement('style');
     widgetStyles.textContent = `
         .chat-assist-widget {
-            --chat-color-primary: var(--chat-widget-primary, #10b981);
-            --chat-color-secondary: var(--chat-widget-secondary, #059669);
-            --chat-color-tertiary: var(--chat-widget-tertiary, #047857);
-            --chat-color-light: var(--chat-widget-light, #e5e7eb); /* Changed from green to neutral gray */
+            --chat-color-primary: var(--chat-widget-primary, #4a4a4a); /* Changed from green to dark gray */
+            --chat-color-secondary: var(--chat-widget-secondary, #6a6a6a); /* Changed from green to medium gray */
+            --chat-color-tertiary: var(--chat-widget-tertiary, #555555);
+            --chat-color-light: var(--chat-widget-light, #e5e7eb);
             --chat-color-surface: var(--chat-widget-surface, #ffffff);
             --chat-color-text: var(--chat-widget-text, #1f2937);
             --chat-color-text-light: var(--chat-widget-text-light, #6b7280);
             --chat-color-border: var(--chat-widget-border, #e5e7eb);
-            --chat-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1); /* Changed from green to black shadow */
-            --chat-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15); /* Changed from green to black shadow */
-            --chat-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2); /* Changed from green to black shadow */
+            --chat-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+            --chat-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+            --chat-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2);
             --chat-radius-sm: 8px;
             --chat-radius-md: 12px;
             --chat-radius-lg: 20px;
@@ -186,7 +186,7 @@
         }
 
         .chat-assist-widget .chat-messages::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         .chat-assist-widget .chat-messages::-webkit-scrollbar-track {
@@ -194,8 +194,12 @@
         }
 
         .chat-assist-widget .chat-messages::-webkit-scrollbar-thumb {
-            background-color: rgba(16, 185, 129, 0.3);
+            background-color: #c1c1c1; /* Changed scrollbar from green to gray */
             border-radius: var(--chat-radius-full);
+        }
+        
+        .chat-assist-widget .chat-messages::-webkit-scrollbar-thumb:hover {
+            background-color: #a8a8a8;
         }
 
         .chat-assist-widget .chat-bubble {
@@ -244,7 +248,7 @@
         .chat-assist-widget .typing-dot {
             width: 8px;
             height: 8px;
-            background: var(--chat-color-primary);
+            background: var(--chat-color-text-light); /* Changed from primary green to light text gray */
             border-radius: var(--chat-radius-full);
             opacity: 0.7;
             animation: typingAnimation 1.4s infinite ease-in-out;
@@ -297,8 +301,8 @@
 
         .chat-assist-widget .chat-textarea:focus {
             outline: none;
-            border-color: #888; /* Changed from green to neutral gray */
-            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1); /* Changed from green to black shadow */
+            border-color: #888;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
         }
 
         .chat-assist-widget .chat-textarea::placeholder {
@@ -381,7 +385,7 @@
         }
 
         .chat-assist-widget .chat-footer-link {
-            color: var(--chat-color-primary);
+            color: var(--chat-color-text-light); /* Changed from primary green */
             text-decoration: none;
             font-size: 12px;
             opacity: 0.8;
@@ -417,19 +421,19 @@
         }
 
         .chat-assist-widget .suggested-question-btn:hover {
-            background: var(--chat-color-light);
-            border-color: var(--chat-color-primary);
+            background: #e9e9e9;
+            border-color: #d1d1d1;
         }
 
         .chat-assist-widget .chat-link {
-            color: var(--chat-color-primary);
+            color: #007bff; /* Changed from primary green to standard link blue */
             text-decoration: underline;
             word-break: break-all;
             transition: var(--chat-transition);
         }
 
         .chat-assist-widget .chat-link:hover {
-            color: var(--chat-color-secondary);
+            color: #0056b3; /* Darker blue for hover */
             text-decoration: underline;
         }
     `;
@@ -452,8 +456,8 @@
             }
         },
         style: {
-            primaryColor: '#10b981', // Green
-            secondaryColor: '#059669', // Darker green
+            primaryColor: '#4a4a4a', // Default is now dark gray
+            secondaryColor: '#6a6a6a', // Default is now medium gray
             position: 'right',
             backgroundColor: '#ffffff',
             fontColor: '#1f2937'
@@ -469,9 +473,6 @@
             style: { 
                 ...defaultSettings.style, 
                 ...window.ChatWidgetConfig.style,
-                // Force green colors if user provided purple
-                primaryColor: window.ChatWidgetConfig.style?.primaryColor === '#854fff' ? '#10b981' : (window.ChatWidgetConfig.style?.primaryColor || '#10b981'),
-                secondaryColor: window.ChatWidgetConfig.style?.secondaryColor === '#6b3fd4' ? '#059669' : (window.ChatWidgetConfig.style?.secondaryColor || '#059669')
             },
             suggestedQuestions: window.ChatWidgetConfig.suggestedQuestions || defaultSettings.suggestedQuestions
         } : defaultSettings;
