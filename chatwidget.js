@@ -17,14 +17,14 @@
             --chat-color-primary: var(--chat-widget-primary, #10b981);
             --chat-color-secondary: var(--chat-widget-secondary, #059669);
             --chat-color-tertiary: var(--chat-widget-tertiary, #047857);
-            --chat-color-light: var(--chat-widget-light, #d1fae5);
+            --chat-color-light: var(--chat-widget-light, #e5e7eb); /* Changed from green to neutral gray */
             --chat-color-surface: var(--chat-widget-surface, #ffffff);
             --chat-color-text: var(--chat-widget-text, #1f2937);
             --chat-color-text-light: var(--chat-widget-text-light, #6b7280);
             --chat-color-border: var(--chat-widget-border, #e5e7eb);
-            --chat-shadow-sm: 0 1px 3px rgba(16, 185, 129, 0.1);
-            --chat-shadow-md: 0 4px 6px rgba(16, 185, 129, 0.15);
-            --chat-shadow-lg: 0 10px 15px rgba(16, 185, 129, 0.2);
+            --chat-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1); /* Changed from green to black shadow */
+            --chat-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15); /* Changed from green to black shadow */
+            --chat-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.2); /* Changed from green to black shadow */
             --chat-radius-sm: 8px;
             --chat-radius-md: 12px;
             --chat-radius-lg: 20px;
@@ -297,8 +297,8 @@
 
         .chat-assist-widget .chat-textarea:focus {
             outline: none;
-            border-color: var(--chat-color-primary);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            border-color: #888; /* Changed from green to neutral gray */
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1); /* Changed from green to black shadow */
         }
 
         .chat-assist-widget .chat-textarea::placeholder {
